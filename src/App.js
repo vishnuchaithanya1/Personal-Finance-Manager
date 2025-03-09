@@ -1,28 +1,25 @@
-import React from 'react';
-import "./App.css";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Login from './Pages/Auth/Login';
-import Register from './Pages/Auth/Register';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './Pages/Home/Home';
-import SetAvatar from './Pages/Avatar/setAvatar';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Components/login/login";
+import Home from "./Components/Home/home";
+import Panel from "./Components/Panel/panel";
+import Profile from "./Components/Profile/profile";
+import Settings from "./Components/Settings/settings";
 
-
-
-const App = () => {
+function App() {
   return (
-    
-      <div className="App" style={{backgroundColor:'grey'}}>
-      <BrowserRouter>
+    <div className="App">
+      <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/setAvatar" element={<SetAvatar />} />
+          <Route path="/" element={<Login />} />
+          <Route element={<Panel />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
         </Routes>
-      </BrowserRouter>
-      </div>
-  )
+      </Router>
+    </div>
+  );
 }
 
-export default App
+export default App;
